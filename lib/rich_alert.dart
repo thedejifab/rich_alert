@@ -187,7 +187,7 @@ Text title(String title) {
   );
 }
 
-Text subtitle(String subtitle) {
+Text richSubtitle(String subtitle) {
   return Text(
     subtitle,
     style: TextStyle(

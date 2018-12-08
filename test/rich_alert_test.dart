@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rich_alerts/rich_alert.dart';
+import 'package:rich_alert/rich_alert.dart';
 
 void main(){
   testWidgets("Test for the RichAlertDialog widget", (WidgetTester tester) async{
     await tester.pumpWidget(RichAlertDialog(
       alertTitle: title("My title"),
-      alertSubtitle: subtitle("My subtitle"),
+      alertSubtitle: richSubtitle("My subtitle"),
       alertType: RichAlertType.SUCCESS,
     ));
 

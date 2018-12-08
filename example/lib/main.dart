@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rich_alerts/rich_alert.dart';
+import 'package:rich_alert/rich_alert.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (BuildContext context) {
                 return RichAlertDialog(
                   alertTitle: title("Alert title"),
-                  alertSubtitle: subtitle("Subtitle"),
+                  alertSubtitle: richSubtitle("Subtitle"),
                   alertType: RichAlertType.WARNING,
                   actions: <Widget>[
                     Text("hello"),
