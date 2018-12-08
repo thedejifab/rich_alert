@@ -27,3 +27,6 @@ showDialog(
 );
 ```
 Check [examples](https://github.com/thedejifab/rich_flutter_dialog/tree/master/example)
+
+## Screenshots
+Add screenshots here
