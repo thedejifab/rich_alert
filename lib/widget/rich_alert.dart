@@ -33,7 +33,7 @@ class RichAlertDialog extends StatefulWidget {
 
   /// (Optional) User defined icon for the dialog. Advisable to use the
   /// default icon matching the dialog type.
-  final Icon dialogIcon;  
+  final Icon dialogIcon;
 
   RichAlertDialog({
     Key key,
@@ -50,17 +50,16 @@ class RichAlertDialog extends StatefulWidget {
 }
 
 class _RichAlertDialogState extends State<RichAlertDialog> {
-
   Map<int, AssetImage> _typeAsset = {
-    0: AssetImage("assets/error.png"),
-    1: AssetImage("assets/success.png"),
-    2: AssetImage("assets/warning.png"),
+    RichAlertType.ERROR: AssetImage("assets/error.png"),
+    RichAlertType.SUCCESS: AssetImage("assets/success.png"),
+    RichAlertType.WARNING: AssetImage("assets/warning.png"),
   };
 
   Map<int, Color> _typeColor = {
-    0: Colors.red,
-    1: Colors.green,
-    2: Colors.yellow,
+    RichAlertType.ERROR: Colors.red,
+    RichAlertType.SUCCESS: Colors.green,
+    RichAlertType.WARNING: Colors.blue,
   };
 
   double deviceWidth;
@@ -80,62 +79,67 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
         : screenSize.width;
     dialogHeight = deviceHeight * (2 / 5);
 
-    return BackdropFilter(
-      filter: ImageFilter.blur(
-        sigmaX: widget.blurValue != null ? widget.blurValue : 3.0,
-        sigmaY: widget.blurValue != null ? widget.blurValue : 3.0,
-      ),
-      child: Container(
-        height: deviceHeight,
-        color: Colors.white.withOpacity(
-            widget.backgroundOpacity != null ? widget.backgroundOpacity : 0.2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Expanded(
-              child: Stack(
-                alignment: Alignment.topCenter,
-                children: <Widget>[
-                  Positioned(
-                    bottom: 0.0,
-                    child: Container(
-                      height: dialogHeight,
-                      width: deviceWidth * 0.9,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0)),
-                        ),
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(height: dialogHeight / 4),
-                            widget.alertTitle,
-                            SizedBox(height: dialogHeight / 10),
-                            widget.alertSubtitle,
-                            SizedBox(height: dialogHeight / 10),
-                            widget.actions != null && widget.actions.isNotEmpty
-                                ? _buildActions()
-                                : _defaultAction(context),
-                          ],
+    return MediaQuery(
+      data: MediaQueryData(),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: widget.blurValue != null ? widget.blurValue : 3.0,
+          sigmaY: widget.blurValue != null ? widget.blurValue : 3.0,
+        ),
+        child: Container(
+          height: deviceHeight,
+          color: Colors.white.withOpacity(widget.backgroundOpacity != null
+              ? widget.backgroundOpacity
+              : 0.2),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Expanded(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Positioned(
+                      bottom: 0.0,
+                      child: Container(
+                        height: dialogHeight,
+                        width: deviceWidth * 0.9,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0)),
+                          ),
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: dialogHeight / 4),
+                              widget.alertTitle,
+                              SizedBox(height: dialogHeight / 10),
+                              widget.alertSubtitle,
+                              SizedBox(height: dialogHeight / 10),
+                              widget.actions != null &&
+                                      widget.actions.isNotEmpty
+                                  ? _buildActions()
+                                  : _defaultAction(context),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: dialogHeight - 50,
-                    child: widget.dialogIcon != null
-                        ? widget.dialogIcon
-                        : _defaultIcon(),
-                  ),
-                ],
+                    Positioned(
+                      bottom: dialogHeight - 50,
+                      child: widget.dialogIcon != null
+                          ? widget.dialogIcon
+                          : _defaultIcon(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -155,7 +159,6 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
       image: _typeAsset[widget.alertType],
       width: deviceHeight / 7,
       height: deviceHeight / 7,
-      // size: deviceHeight / 7,
     );
   }
 
@@ -164,10 +167,10 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
       alignment: Alignment.center,
       child: RaisedButton(
         elevation: 2.0,
-        color: Colors.green,
+        color: _typeColor[widget.alertType],
         child: Text(
           "GOT IT",
-          style: TextStyle(color: _typeColor[widget.alertType]),
+          style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
           Navigator.pop(context);
@@ -193,8 +196,7 @@ Text subtitle(String subtitle) {
   );
 }
 
-
-class RichAlertType{
+class RichAlertType {
   /// Indicates an error dialog by providing an error icon.
   static const int ERROR = 0;
 

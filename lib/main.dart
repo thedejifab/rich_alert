@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return RichAlertDialog(
                   alertTitle: title("Alert title"),
                   alertSubtitle: subtitle("Subtitle"),
-                  alertType: RichAlertTypes.ERROR,
+                  alertType: RichAlertType.WARNING,
                   actions: <Widget>[
                     Text("hello"),
                     Text("its me"),
