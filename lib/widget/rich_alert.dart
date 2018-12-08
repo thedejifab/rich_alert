@@ -11,11 +11,13 @@ class RichAlertDialog extends StatelessWidget {
   /// Indicates a warning dialog by providing a warning icon.
   static const int WARNING = 2;
 
-  Map<int, IconData> type_icon = {
-    ERROR: Icons.cancel,
-    SUCCESS: Icons.check_circle,
-    WARNING: Icons.warning,
+  Map<int, AssetImage> typeAsset = {
+    ERROR: AssetImage("assets/error.png"),
+    SUCCESS: AssetImage("assets/success.png"),
+    WARNING: AssetImage("assets/warning.png"),
   };
+
+  final BuildContext context;
 
   /// The title of the dialog is displayed in a large font at the top
   /// of the dialog.
@@ -53,6 +55,7 @@ class RichAlertDialog extends StatelessWidget {
   double dialogHeight;
 
   RichAlertDialog({
+    @required this.context,
     @required this.alertTitle,
     @required this.alertSubtitle,
     @required this.alertType,
@@ -64,6 +67,7 @@ class RichAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context = this.context;
     Size screenSize = MediaQuery.of(context).size;
     deviceWidth = screenSize.width;
     deviceHeight = screenSize.height;
@@ -129,7 +133,7 @@ class RichAlertDialog extends StatelessWidget {
       ),
     );
   }
- 
+
   Container buildActions() {
     return Container(
       child: Row(
@@ -139,11 +143,12 @@ class RichAlertDialog extends StatelessWidget {
     );
   }
 
-  Icon defaultIcon() {
-    return Icon(
-      type_icon[alertType],
-      color: Colors.green, //remove this when you finally use custom icons
-      size: deviceHeight / 7,
+  Image defaultIcon() {
+    return Image(
+      image: typeAsset[this.alertType],
+      width: deviceHeight / 7,
+      height: deviceHeight / 7,
+      // size: deviceHeight / 7,
     );
   }
 
