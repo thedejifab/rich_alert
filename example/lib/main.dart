@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rich_alerts/widget/rich_alert.dart';
+import 'package:rich_alerts/rich_alert.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Rich Alert Dialog'),
     );
   }
 }
@@ -45,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          /// Use case scenario for the rich alert dialog
           showDialog(
               context: context,
               builder: (BuildContext context) {
