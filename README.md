@@ -26,4 +26,11 @@ showDialog(
   }
 );
 ```
+<<<<<<< HEAD
 Check [examples](https://github.com/thedejifab/rich_alert/tree/master/example)
+=======
+Check [examples](https://github.com/thedejifab/rich_flutter_dialog/tree/master/example)
+
+## Screenshots
+Add screenshots here
+>>>>>>> 8988d32f582c36c30820c9b628ba9753afea8ef3
