@@ -1,6 +1,6 @@
 name: rich_alert
 description: Flutter Alert Dialogs for the "rich". Used for rendering beautiful untraditional alert dialogs in Flutter apps.
-version: 0.1.0
+version: 0.1.1
 author: Fabusuyi Ayodeji <thedejifab@outlook.com>
 homepage: https://github.com/thedejifab/rich_flutter_dialog
 
