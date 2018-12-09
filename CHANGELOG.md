@@ -1,4 +1,9 @@
 
+## 0.1.2 - 2018-12-09
+
+* Resolved exportation of assets
+* Minor renaming
+
 ## 0.1.1 - 2018-12-09
 
 * Minor fixes
