@@ -1,4 +1,8 @@
 
+## 0.1.32 - 2018-12-09
+
+* Updated docs
+
 ## 0.1.31 - 2018-12-09
 
 * Resolved exportation of assets - Final

@@ -7,7 +7,7 @@ This package supports usage on both Android and iOS builds.
 ## Adding to your flutter project
 Add [`rich_alert`](https://pub.dartlang.org) as a dependency in your pubspec.yaml file
 ``` yaml
-rich_alert: ^0.1.31
+rich_alert: ^0.1.32
 ```
 
 ## Use the package
@@ -32,4 +32,4 @@ showDialog(
 Check [examples](https://github.com/thedejifab/rich_flutter_dialog/tree/master/example)
 
 ## Screenshots
-<p><img src="screenshots/success.png" width="300px" height="auto"/> <img src="screenshots/warning.png" width="300px" height="auto"/></p>
+<p><img src="https://raw.githubusercontent.com/thedejifab/rich_alert/master/screenshots/success.png" width="300px" height="auto"/> <img src="https://raw.githubusercontent.com/thedejifab/rich_alert/master/screenshots/warning.png" width="300px" height="auto"/></p>
