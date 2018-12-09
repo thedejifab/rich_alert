@@ -7,7 +7,7 @@ This package supports usage on both Android and iOS builds.
 ## Adding to your flutter project
 Add [`rich_alert`](https://pub.dartlang.org) as a dependency in your pubspec.yaml file
 ``` yaml
-rich_alert: ^0.1.3
+rich_alert: ^0.1.31
 ```
 
 ## Use the package
