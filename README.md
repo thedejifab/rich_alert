@@ -32,4 +32,4 @@ showDialog(
 Check [examples](https://github.com/thedejifab/rich_flutter_dialog/tree/master/example)
 
 ## Screenshots
-Add screenshots here
+<p><img src="screenshots/success.png" width="300px" height="auto"/> <img src="screenshots/warning.png" width="300px" height="auto"/></p>
