@@ -1,10 +1,10 @@
-# rich_flutter_dialog
+# rich_alert
 An alert dialog package for the "rich". This package helps you to render an _un-traditional_ alert dialog in your Flutter app :smiley:
 
 ## Adding to your flutter project
-Add [`rich_flutter_dialog`](https://pub.dartlang.org) as a dependency in your pubspec.yaml file
+Add [`rich_alert`](https://pub.dartlang.org) as a dependency in your pubspec.yaml file
 ``` yaml
-rich_flutter_dialog: ^0.0.1
+rich_alert: ^0.0.1
 ```
 
 ## Use the package
@@ -26,4 +26,4 @@ showDialog(
   }
 );
 ```
-Check [examples](https://github.com/thedejifab/rich_flutter_dialog/tree/master/example)
+Check [examples](https://github.com/thedejifab/rich_alert/tree/master/example)
