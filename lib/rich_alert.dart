@@ -51,9 +51,9 @@ class RichAlertDialog extends StatefulWidget {
 
 class _RichAlertDialogState extends State<RichAlertDialog> {
   Map<int, AssetImage> _typeAsset = {
-    RichAlertType.ERROR: AssetImage("lib/assets/error.png"),
-    RichAlertType.SUCCESS: AssetImage("lib/assets/success.png"),
-    RichAlertType.WARNING: AssetImage("lib/assets/warning.png"),
+    RichAlertType.ERROR: AssetImage("packages/rich_alert/assets/error.png"),
+    RichAlertType.SUCCESS: AssetImage("packages/rich_alert/assets/success.png"),
+    RichAlertType.WARNING: AssetImage("packages/rich_alert/assets/warning.png"),
   };
 
   Map<int, Color> _typeColor = {

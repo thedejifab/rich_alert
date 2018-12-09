@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               context: context,
               builder: (BuildContext context) {
                 return RichAlertDialog(
-                  alertTitle: title("Alert title"),
+                  alertTitle: richTitle("Alert title"),
                   alertSubtitle: richSubtitle("Subtitle"),
                   alertType: RichAlertType.WARNING,
                   actions: <Widget>[

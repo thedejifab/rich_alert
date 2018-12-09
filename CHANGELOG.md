@@ -1,4 +1,8 @@
 
+## 0.1.3 - 2018-12-09
+
+* Resolved exportation of assets - Final
+
 ## 0.1.2 - 2018-12-09
 
 * Resolved exportation of assets
