@@ -4,7 +4,7 @@ An alert dialog package for the "rich". This package helps you to render an _un-
 ## Adding to your flutter project
 Add [`rich_alert`](https://pub.dartlang.org) as a dependency in your pubspec.yaml file
 ``` yaml
-rich_alert: ^0.0.1
+rich_alert: ^0.1.0
 ```
 
 ## Use the package
