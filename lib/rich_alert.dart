@@ -54,12 +54,14 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     RichAlertType.ERROR: AssetImage("packages/rich_alert/assets/error.png"),
     RichAlertType.SUCCESS: AssetImage("packages/rich_alert/assets/success.png"),
     RichAlertType.WARNING: AssetImage("packages/rich_alert/assets/warning.png"),
+    RichAlertType.INFO: AssetImage("packages/rich_alert/assets/info.png"),
   };
 
   Map<int, Color> _typeColor = {
     RichAlertType.ERROR: Colors.red,
     RichAlertType.SUCCESS: Colors.green,
-    RichAlertType.WARNING: Colors.blue,
+    RichAlertType.WARNING: Colors.orange,
+    RichAlertType.INFO: Colors.blue,
   };
 
   double deviceWidth;
@@ -205,4 +207,6 @@ class RichAlertType {
 
   /// Indicates a warning dialog by providing a warning icon.
   static const int WARNING = 2;
+
+  static const int INFO = 3;
 }
