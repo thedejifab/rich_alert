@@ -28,23 +28,28 @@ class RichAlertDialog extends StatefulWidget {
   /// Higher values mean more blurred overlays.
   final double blurValue;
 
-  // Specifies the opacity of the screen overlay
+// Specifies the opacity of the screen overlay
   final double backgroundOpacity;
 
   /// (Optional) User defined icon for the dialog. Advisable to use the
   /// default icon matching the dialog type.
   final Icon dialogIcon;
 
-  RichAlertDialog({
-    Key key,
-    @required this.alertTitle,
-    @required this.alertSubtitle,
-    @required this.alertType,
-    this.actions,
-    this.blurValue,
-    this.backgroundOpacity,
-    this.dialogIcon,
-  }) : super(key: key);
+  /// if true the  Alert Box will dismiss on clicking outside the Alert Box.
+  /// It defaults to true
+  final bool barrierDismissible;
+
+  RichAlertDialog(
+      {Key key,
+      @required this.alertTitle,
+      @required this.alertSubtitle,
+      @required this.alertType,
+      this.actions,
+      this.blurValue,
+      this.backgroundOpacity,
+      this.dialogIcon,
+      this.barrierDismissible = true})
+      : super(key: key);
 
   createState() => _RichAlertDialogState();
 }
@@ -97,46 +102,53 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Expanded(
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    Positioned(
-                      bottom: 0.0,
-                      child: Container(
-                        height: dialogHeight,
-                        width: deviceWidth * 0.9,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0)),
-                          ),
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(height: dialogHeight / 4),
-                              widget.alertTitle,
-                              SizedBox(height: dialogHeight / 10),
-                              widget.alertSubtitle,
-                              SizedBox(height: dialogHeight / 10),
-                              widget.actions != null &&
-                                      widget.actions.isNotEmpty
-                                  ? _buildActions()
-                                  : _defaultAction(context),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: dialogHeight - 50,
-                      child: widget.dialogIcon != null
-                          ? widget.dialogIcon
-                          : _defaultIcon(),
-                    ),
-                  ],
-                ),
+                child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                        onTap: widget.barrierDismissible
+                            ? () => Navigator.of(context).pop()
+                            : null,
+                        child: Stack(
+                          alignment: Alignment.topCenter,
+                          children: <Widget>[
+                            Positioned(
+                              bottom: 0.0,
+                              child: Container(
+                                height: dialogHeight,
+                                width: deviceWidth * 0.9,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20.0),
+                                        topRight: Radius.circular(20.0)),
+                                  ),
+                                  color: Colors.white,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      SizedBox(height: dialogHeight / 4),
+                                      widget.alertTitle,
+                                      SizedBox(height: dialogHeight / 10),
+                                      widget.alertSubtitle,
+                                      SizedBox(height: dialogHeight / 10),
+                                      widget.actions != null &&
+                                              widget.actions.isNotEmpty
+                                          ? _buildActions()
+                                          : _defaultAction(context),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: dialogHeight - 50,
+                              child: widget.dialogIcon != null
+                                  ? widget.dialogIcon
+                                  : _defaultIcon(),
+                            ),
+                          ],
+                        ))),
               ),
             ],
           ),
