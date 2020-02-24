@@ -90,9 +90,11 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
         ),
         child: Container(
           height: deviceHeight,
-          color: Colors.white.withOpacity(widget.backgroundOpacity != null
-              ? widget.backgroundOpacity
-              : 0.2),
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.white.withOpacity(widget.backgroundOpacity != null
+                  ? widget.backgroundOpacity
+                  : 0.2)
+              : Colors.grey[900],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
