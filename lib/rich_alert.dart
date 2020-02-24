@@ -113,7 +113,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                                 topLeft: Radius.circular(20.0),
                                 topRight: Radius.circular(20.0)),
                           ),
-                          color: Colors.white,
+                          // color: Colors.white,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
