@@ -35,6 +35,8 @@ class RichAlertDialog extends StatefulWidget {
   /// default icon matching the dialog type.
   final Icon dialogIcon;
 
+  final Color color;
+
   RichAlertDialog({
     Key key,
     @required this.alertTitle,
@@ -44,6 +46,7 @@ class RichAlertDialog extends StatefulWidget {
     this.blurValue,
     this.backgroundOpacity,
     this.dialogIcon,
+    this.color,
   }) : super(key: key);
 
   createState() => _RichAlertDialogState();
@@ -90,11 +93,9 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
         ),
         child: Container(
           height: deviceHeight,
-          color: Theme.of(context).brightness == Brightness.light
-              ? Colors.white.withOpacity(widget.backgroundOpacity != null
-                  ? widget.backgroundOpacity
-                  : 0.2)
-              : Colors.grey[900],
+          color: widget.color.withOpacity(widget.backgroundOpacity != null
+              ? widget.backgroundOpacity
+              : 0.2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -115,10 +116,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                                 topLeft: Radius.circular(20.0),
                                 topRight: Radius.circular(20.0)),
                           ),
-                          color:
-                              Theme.of(context).brightness == Brightness.light
-                                  ? Colors.white
-                                  : Colors.grey[900],
+                          color: widget.color,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
