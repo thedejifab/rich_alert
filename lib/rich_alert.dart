@@ -180,20 +180,12 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
   }
 }
 
-Text richTitle(String title) {
-  return Text(
-    title,
-    style: TextStyle(fontSize: 24.0),
-  );
+Text richTitle(Text title) {
+  return title;
 }
 
-Text richSubtitle(String subtitle) {
-  return Text(
-    subtitle,
-    style: TextStyle(
-      color: Colors.grey,
-    ),
-  );
+Text richSubtitle(Text subtitle) {
+  return subtitle;;
 }
 
 class RichAlertType {
