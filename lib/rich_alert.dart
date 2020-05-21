@@ -54,12 +54,14 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     RichAlertType.ERROR: AssetImage("packages/rich_alert/assets/error.png"),
     RichAlertType.SUCCESS: AssetImage("packages/rich_alert/assets/success.png"),
     RichAlertType.WARNING: AssetImage("packages/rich_alert/assets/warning.png"),
+    RichAlertType.INFO: AssetImage("packages/rich_alert/assets/info.png"),
   };
 
   Map<int, Color> _typeColor = {
     RichAlertType.ERROR: Colors.red,
     RichAlertType.SUCCESS: Colors.green,
-    RichAlertType.WARNING: Colors.blue,
+    RichAlertType.WARNING: Colors.orange,
+    RichAlertType.INFO: Colors.blue,
   };
 
   double deviceWidth;
@@ -88,9 +90,11 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
         ),
         child: Container(
           height: deviceHeight,
-          color: Colors.white.withOpacity(widget.backgroundOpacity != null
-              ? widget.backgroundOpacity
-              : 0.2),
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.white.withOpacity(widget.backgroundOpacity != null
+                  ? widget.backgroundOpacity
+                  : 0.2)
+              : Colors.grey[900],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -111,7 +115,10 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                                 topLeft: Radius.circular(20.0),
                                 topRight: Radius.circular(20.0)),
                           ),
-                          color: Colors.white,
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.white
+                                  : Colors.grey[800],
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
@@ -205,4 +212,6 @@ class RichAlertType {
 
   /// Indicates a warning dialog by providing a warning icon.
   static const int WARNING = 2;
+
+  static const int INFO = 3;
 }
