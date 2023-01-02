@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
 
@@ -53,11 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   alertSubtitle: richSubtitle("Subtitle"),
                   alertType: RichAlertType.WARNING,
                   actions: <Widget>[
-                    FlatButton(
+                    ElevatedButton(
                        child: Text("OK"),
                        onPressed: (){Navigator.pop(context);},
                     ),
-                    FlatButton(
+                    TextButton(
                        child: Text("Cancel"),
                        onPressed: (){Navigator.pop(context);},
                     ),

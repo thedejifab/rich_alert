@@ -33,16 +33,16 @@ class RichAlertDialog extends StatefulWidget {
 
   /// (Optional) User defined icon for the dialog. Advisable to use the
   /// default icon matching the dialog type.
-  final Icon dialogIcon;
+  final Icon? dialogIcon;
 
   RichAlertDialog({
-    Key key,
-    @required this.alertTitle,
-    @required this.alertSubtitle,
-    @required this.alertType,
-    this.actions,
-    this.blurValue,
-    this.backgroundOpacity,
+    Key? key,
+    required this.alertTitle,
+    required this.alertSubtitle,
+    required this.alertType,
+    this.actions = const [],
+    this.blurValue = 3.0,
+    this.backgroundOpacity = 0.2,
     this.dialogIcon,
   }) : super(key: key);
 
@@ -62,9 +62,9 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     RichAlertType.WARNING: Colors.blue,
   };
 
-  double deviceWidth;
-  double deviceHeight;
-  double dialogHeight;
+  late double deviceWidth;
+  late double deviceHeight;
+  late double dialogHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +83,12 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
       data: MediaQueryData(),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: widget.blurValue != null ? widget.blurValue : 3.0,
-          sigmaY: widget.blurValue != null ? widget.blurValue : 3.0,
+          sigmaX: widget.blurValue,
+          sigmaY: widget.blurValue,
         ),
         child: Container(
           height: deviceHeight,
-          color: Colors.white.withOpacity(widget.backgroundOpacity != null
-              ? widget.backgroundOpacity
-              : 0.2),
+          color: Colors.white.withOpacity(widget.backgroundOpacity),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
@@ -120,8 +118,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                               SizedBox(height: dialogHeight / 10),
                               widget.alertSubtitle,
                               SizedBox(height: dialogHeight / 10),
-                              widget.actions != null &&
-                                      widget.actions.isNotEmpty
+                              widget.actions.isNotEmpty
                                   ? _buildActions()
                                   : _defaultAction(context),
                             ],
@@ -131,9 +128,7 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                     ),
                     Positioned(
                       bottom: dialogHeight - 50,
-                      child: widget.dialogIcon != null
-                          ? widget.dialogIcon
-                          : _defaultIcon(),
+                      child: widget.dialogIcon ?? _defaultIcon(),
                     ),
                   ],
                 ),
@@ -155,19 +150,25 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
   }
 
   Image _defaultIcon() {
-    return Image(
-      image: _typeAsset[widget.alertType],
-      width: deviceHeight / 7,
-      height: deviceHeight / 7,
-    );
+    if (_typeAsset.containsKey(widget.alertType)) {
+      return Image(
+        image: _typeAsset[widget.alertType]!,
+        width: deviceHeight / 7,
+        height: deviceHeight / 7,
+      );
+    } else {
+      throw Exception("Invalid alertType");
+    }
   }
 
   Container _defaultAction(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: RaisedButton(
-        elevation: 2.0,
-        color: _typeColor[widget.alertType],
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 2.0,
+          backgroundColor: _typeColor[widget.alertType],
+        ),
         child: Text(
           "GOT IT",
           style: TextStyle(color: Colors.white),
