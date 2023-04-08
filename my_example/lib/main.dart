@@ -54,13 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   alertSubtitle: richSubtitle("Subtitle"),
                   alertType: RichAlertType.INFO,
                   actions: <Widget>[
-                    FlatButton(
+                    ElevatedButton(
                       child: Text("OK"),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
-                    FlatButton(
+                    ElevatedButton(
                       child: Text("Cancel"),
                       onPressed: () {
                         Navigator.pop(context);

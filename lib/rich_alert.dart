@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class RichAlertDialog extends StatefulWidget {
@@ -172,9 +173,11 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
   Container _defaultAction(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: RaisedButton(
-        elevation: 2.0,
-        color: _typeColor[widget.alertType],
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 2.0,
+          backgroundColor: _typeColor[widget.alertType],
+        ),
         child: Text(
           "GOT IT",
           style: TextStyle(color: Colors.white),
