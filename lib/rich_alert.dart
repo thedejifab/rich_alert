@@ -23,24 +23,24 @@ class RichAlertDialog extends StatefulWidget {
   /// [Button] widget is rendered.
   ///
   /// Typically a [List<Widget>] widget.
-  final List<Widget> actions;
+  final List<Widget>? actions;
 
   /// Specifies how blur the screen overlay effect should be.
   /// Higher values mean more blurred overlays.
-  final double blurValue;
+  final double? blurValue;
 
   // Specifies the opacity of the screen overlay
-  final double backgroundOpacity;
+  final double? backgroundOpacity;
 
   /// (Optional) User defined icon for the dialog. Advisable to use the
   /// default icon matching the dialog type.
-  final Icon dialogIcon;
+  final Icon? dialogIcon;
 
   RichAlertDialog({
-    Key key,
-    @required this.alertTitle,
-    @required this.alertSubtitle,
-    @required this.alertType,
+    Key? key,
+    required this.alertTitle,
+    required this.alertSubtitle,
+    required this.alertType,
     this.actions,
     this.blurValue,
     this.backgroundOpacity,
@@ -65,9 +65,9 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     RichAlertType.INFO: Colors.blue,
   };
 
-  double deviceWidth;
-  double deviceHeight;
-  double dialogHeight;
+  late double deviceWidth;
+  double? deviceHeight;
+  double? dialogHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -80,20 +80,20 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     deviceHeight = orientation == Orientation.portrait
         ? screenSize.height
         : screenSize.width;
-    dialogHeight = deviceHeight * (2 / 5);
+    dialogHeight = deviceHeight! * (2 / 5);
 
     return MediaQuery(
       data: MediaQueryData(),
       child: BackdropFilter(
         filter: ImageFilter.blur(
-          sigmaX: widget.blurValue != null ? widget.blurValue : 3.0,
-          sigmaY: widget.blurValue != null ? widget.blurValue : 3.0,
+          sigmaX: widget.blurValue != null ? widget.blurValue! : 3.0,
+          sigmaY: widget.blurValue != null ? widget.blurValue! : 3.0,
         ),
         child: Container(
           height: deviceHeight,
           color: Theme.of(context).brightness == Brightness.light
               ? Colors.white.withOpacity(widget.backgroundOpacity != null
-                  ? widget.backgroundOpacity
+                  ? widget.backgroundOpacity!
                   : 0.2)
               : Colors.grey[900],
           child: Column(
@@ -123,13 +123,13 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              SizedBox(height: dialogHeight / 4),
+                              SizedBox(height: dialogHeight! / 4),
                               widget.alertTitle,
-                              SizedBox(height: dialogHeight / 10),
+                              SizedBox(height: dialogHeight! / 10),
                               widget.alertSubtitle,
-                              SizedBox(height: dialogHeight / 10),
+                              SizedBox(height: dialogHeight! / 10),
                               widget.actions != null &&
-                                      widget.actions.isNotEmpty
+                                      widget.actions!.isNotEmpty
                                   ? _buildActions()
                                   : _defaultAction(context),
                             ],
@@ -138,9 +138,9 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
                       ),
                     ),
                     Positioned(
-                      bottom: dialogHeight - 50,
+                      bottom: dialogHeight! - 50,
                       child: widget.dialogIcon != null
-                          ? widget.dialogIcon
+                          ? widget.dialogIcon!
                           : _defaultIcon(),
                     ),
                   ],
@@ -157,16 +157,16 @@ class _RichAlertDialogState extends State<RichAlertDialog> {
     return Container(
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: widget.actions,
+        children: widget.actions!,
       ),
     );
   }
 
   Image _defaultIcon() {
     return Image(
-      image: _typeAsset[widget.alertType],
-      width: deviceHeight / 7,
-      height: deviceHeight / 7,
+      image: _typeAsset[widget.alertType]!,
+      width: deviceHeight! / 7,
+      height: deviceHeight! / 7,
     );
   }
 
